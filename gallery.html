@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri — Wastra Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f2ede4;--paper-deep:#e8e0d2;--ink:#1a1612;--ink-soft:#4a4338;--ink-muted:#8a8172;--rule:#d4c9b8;--accent:#a63d1f;--white:#fff;--serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1);--speed:.4s;--max:1280px;--pad:32px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul,ol{list-style:none}
+::selection{background:var(--accent);color:#fff}
+.container{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.02;letter-spacing:-.025em}
+h1 em,h2 em{font-style:italic;font-weight:400}
+h1{font-size:clamp(2.4rem,5.5vw,4.8rem)}
+h2{font-size:clamp(1.8rem,4vw,3.2rem)}
+p{color:var(--ink-soft)}
+.eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:.85rem;font-weight:500;padding:14px 24px;border-radius:2px;transition:all var(--speed) var(--ease);border:1px solid transparent}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--accent)}
+.btn-sm{padding:10px 18px;font-size:.78rem}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(242,237,228,.85);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color var(--speed)}
+.site-header.scrolled{border-bottom-color:var(--rule)}
+.header-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:78px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.brand{display:inline-flex;align-items:center;gap:12px;flex-shrink:0}
+.brand-mark{width:36px;height:36px;display:grid;place-items:center;background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:1.15rem;font-weight:600;border-radius:2px}
+.brand-name{font-family:var(--serif);font-size:1.35rem;font-weight:500;letter-spacing:-.02em;font-style:italic}
+.primary-nav{display:flex;align-items:center;gap:32px;margin-left:auto}
+.primary-nav a{font-size:.85rem;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0;transition:color var(--speed)}
+.primary-nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--speed) var(--ease)}
+.primary-nav a:hover,.primary-nav a.active{color:var(--ink)}
+.primary-nav a:hover::after,.primary-nav a.active::after{transform:scaleX(1)}
+.header-actions{display:flex;align-items:center;gap:14px}
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);z-index:200;transition:all var(--speed)}
+.hamburger span{display:block;width:18px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform var(--speed),opacity var(--speed)}
+.hamburger.active span:nth-child(1){transform:translateY(3.75px) rotate(45deg)}
+.hamburger.active span:nth-child(2){transform:translateY(-3.75px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mobile-menu{position:fixed;inset:0;background:var(--paper);z-index:90;padding:120px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--ease);pointer-events:none}
+.mobile-menu.open{clip-path:inset(0 0 0 0);pointer-events:auto}
+.mobile-nav{display:flex;flex-direction:column;gap:6px}
+.mobile-nav a{font-family:var(--serif);font-size:clamp(2rem,7vw,3.2rem);font-weight:400;letter-spacing:-.03em;line-height:1.15;padding:8px 0;display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--rule);color:var(--ink);opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease),color var(--speed),padding-left var(--speed)}
+.mobile-menu.open .mobile-nav a{opacity:1;transform:translateY(0)}
+.mobile-menu.open .mobile-nav a:nth-child(1){transition-delay:.1s}
+.mobile-menu.open .mobile-nav a:nth-child(2){transition-delay:.16s}
+.mobile-menu.open .mobile-nav a:nth-child(3){transition-delay:.22s}
+.mobile-menu.open .mobile-nav a:nth-child(4){transition-delay:.28s}
+.mobile-nav a:hover{color:var(--accent);padding-left:12px}
+.mobile-nav a::before{content:attr(data-index);font-family:var(--sans);font-size:.7rem;font-weight:600;color:var(--ink-muted);order:-1}
+.mobile-menu-foot{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid var(--rule);font-size:.82rem;color:var(--ink-muted)}
+.mobile-menu-foot span{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:4px}
+
+/* GALLERY HERO */
+.gallery-hero{padding:60px 0 40px;border-bottom:1px solid var(--rule)}
+.gallery-hero h1{margin-bottom:40px}
+.gallery-hero-meta{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:end}
+.gallery-hero-meta .lead{font-size:1rem;color:var(--ink-soft);max-width:520px;line-height:1.7}
+.gallery-hero-stats{display:flex;gap:44px;justify-content:flex-end}
+.gallery-hero-stats dt{font-family:var(--serif);font-size:2rem;font-weight:400;line-height:1;color:var(--ink);letter-spacing:-.02em}
+.gallery-hero-stats dd{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);margin-top:8px}
+
+/* FILTER */
+.gallery-filter{position:sticky;top:78px;z-index:50;background:rgba(242,237,228,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);padding:16px 0}
+.filter-bar{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{padding:8px 18px;font-size:.78rem;font-weight:500;letter-spacing:.04em;border:1px solid var(--rule);border-radius:999px;color:var(--ink-soft);background:transparent;transition:all var(--speed);white-space:nowrap}
+.filter-btn:hover{border-color:var(--ink);color:var(--ink)}
+.filter-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* GRID */
+.gallery-section{padding:60px 0 100px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;grid-auto-flow:dense}
+.gallery-item{position:relative;overflow:hidden;aspect-ratio:1/1;cursor:pointer;background:var(--paper-deep);transition:opacity var(--speed)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter var(--speed);filter:saturate(.92)}
+.gallery-item:hover img{transform:scale(1.06);filter:saturate(1.05)}
+.gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,22,18,.75));opacity:0;transition:opacity var(--speed);pointer-events:none}
+.gallery-item:hover::after{opacity:1}
+.gallery-item figcaption{position:absolute;bottom:16px;left:16px;right:16px;color:var(--paper);font-size:.78rem;font-weight:500;z-index:2;transform:translateY(8px);opacity:0;transition:opacity var(--speed),transform var(--speed);display:flex;align-items:baseline;gap:10px}
+.gallery-item:hover figcaption{opacity:1;transform:translateY(0)}
+.gallery-item figcaption span{font-family:var(--serif);font-style:italic;font-size:.85rem;color:#d4b47e}
+.gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gallery-item:nth-child(6){grid-column:span 2;grid-row:span 2}
+.gallery-item:nth-child(9){grid-column:span 2}
+.gallery-item.hidden{display:none}
+
+/* VIDEO */
+.video-section{padding:100px 0;background:var(--white);border-top:1px solid var(--rule)}
+.section-head{margin-bottom:56px}
+.section-head-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end}
+.section-lead{font-size:.95rem;color:var(--ink-muted);line-height:1.65;max-width:420px}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.video-item{cursor:pointer;display:flex;flex-direction:column}
+.video-thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink)}
+.video-thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.85);transition:transform 1s var(--ease),filter var(--speed)}
+.video-item:hover .video-thumb img{transform:scale(1.06);filter:saturate(1) brightness(.7)}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:rgba(242,237,228,.95);color:var(--ink);display:grid;place-items:center;z-index:2;transition:all var(--speed);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.play-btn svg{width:26px;height:26px;margin-left:3px}
+.video-item:hover .play-btn{background:var(--accent);color:var(--paper);transform:translate(-50%,-50%) scale(1.1)}
+.video-duration{position:absolute;bottom:14px;right:14px;background:rgba(26,22,18,.8);color:var(--paper);font-size:.7rem;font-weight:600;letter-spacing:.05em;padding:4px 10px;border-radius:2px;z-index:2}
+.video-meta{display:flex;gap:16px;padding-top:20px;align-items:flex-start}
+.video-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--accent);flex-shrink:0}
+.video-meta h3{font-size:1.05rem;font-weight:500;margin-bottom:4px;color:var(--ink);font-family:var(--serif)}
+.video-meta p{font-size:.78rem;color:var(--ink-muted)}
+
+/* CTA */
+.gallery-cta{padding:0 var(--pad);max-width:var(--max);margin:100px auto}
+.gallery-cta-inner{display:block;background:var(--ink);color:var(--paper);padding:80px 60px;position:relative;overflow:hidden;transition:background var(--speed)}
+.gallery-cta-inner:hover{background:var(--accent)}
+.gallery-cta-inner .eyebrow{color:rgba(242,237,228,.65)}
+.gallery-cta-inner .eyebrow .dot{background:var(--paper)}
+.gallery-cta-inner h2{color:var(--paper);margin-bottom:0;max-width:700px}
+.gallery-cta-inner h2 em{color:var(--paper)}
+.gallery-cta-arrow{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:80px;height:80px;border-radius:50%;border:1px solid rgba(242,237,228,.3);display:grid;place-items:center;transition:all var(--speed)}
+.gallery-cta-arrow svg{width:26px;height:26px;color:var(--paper);transition:transform var(--speed)}
+.gallery-cta-inner:hover .gallery-cta-arrow{background:var(--paper);border-color:var(--paper)}
+.gallery-cta-inner:hover .gallery-cta-arrow svg{color:var(--accent);transform:translateX(6px)}
+
+/* FOOTER */
+.site-footer{background:var(--ink);color:rgba(242,237,228,.7);padding:80px 0 32px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(242,237,228,.12)}
+.footer-brand .brand-mark{background:var(--paper);color:var(--ink)}
+.footer-brand .brand-name{color:var(--paper)}
+.footer-brand p{font-size:.85rem;color:rgba(242,237,228,.55);margin-top:20px;max-width:320px;line-height:1.65}
+.footer-col h4{font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);margin-bottom:20px}
+.footer-col p,.footer-col a{font-size:.88rem;color:rgba(242,237,228,.6);line-height:1.8;transition:color var(--speed)}
+.footer-col a:hover{color:var(--paper)}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:32px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,237,228,.4);flex-wrap:wrap;gap:10px}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(15,12,9,.96);display:none;align-items:center;justify-content:center;padding:60px 40px;backdrop-filter:blur(6px)}
+.lightbox.open{display:flex}
+.lightbox-content{max-width:90vw;max-height:85vh;display:flex;flex-direction:column;align-items:center;gap:20px}
+.lightbox-content img{max-width:100%;max-height:78vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lightbox-content figcaption{color:var(--paper);font-family:var(--serif);font-style:italic;font-size:1rem;text-align:center}
+.lightbox-close{position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(242,237,228,.1);color:var(--paper);font-size:1rem;display:grid;place-items:center;transition:all var(--speed);z-index:2}
+.lightbox-close:hover{background:var(--accent)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(242,237,228,.1);color:var(--paper);font-size:1.2rem;display:grid;place-items:center;transition:all var(--speed);z-index:2}
+.lightbox-nav:hover{background:var(--accent)}
+.lightbox-nav.prev{left:24px}
+.lightbox-nav.next{right:24px}
+
+/* VIDEO MODAL */
+.video-modal{position:fixed;inset:0;z-index:500;background:rgba(15,12,9,.96);display:none;align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(6px)}
+.video-modal.open{display:flex}
+.video-modal-content{max-width:900px;width:100%;position:relative}
+.video-modal-content video{width:100%;max-height:85vh;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.video-modal-close{position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(242,237,228,.1);color:var(--paper);font-size:1rem;display:grid;place-items:center;transition:all var(--speed);z-index:2}
+.video-modal-close:hover{background:var(--accent)}
+
+/* RESPONSIVE */
+@media (max-width:1080px){
+.section-head-grid{grid-template-columns:1fr;gap:24px}
+.gallery-grid{grid-template-columns:repeat(3,1fr)}
+.gallery-hero-meta{grid-template-columns:1fr;gap:32px}
+.gallery-hero-stats{justify-content:flex-start}
+}
+@media (max-width:960px){
+:root{--pad:24px}
+.primary-nav{display:none}
+.hamburger{display:flex}
+.video-grid{grid-template-columns:1fr;gap:32px}
+.gallery-grid{grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery-cta-inner{padding:56px 32px}
+.gallery-cta-arrow{right:32px;width:60px;height:60px}
+.gallery-cta-arrow svg{width:20px;height:20px}
+.footer-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media (max-width:720px){
+.gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+.gallery-item:nth-child(1),.gallery-item:nth-child(6),.gallery-item:nth-child(9){grid-column:span 2;grid-row:span 1}
+.gallery-item figcaption{font-size:.7rem;bottom:10px;left:10px;right:10px}
+.lightbox{padding:40px 16px}
+.lightbox-nav.prev{left:8px}
+.lightbox-nav.next{right:8px}
+.lightbox-close{top:12px;right:12px}
+.gallery-cta-inner{padding:48px 24px}
+.gallery-cta-arrow{position:relative;right:auto;top:auto;transform:none;margin-top:28px}
+.footer-top{grid-template-columns:1fr;padding-bottom:40px}
+.footer-bottom{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:480px){
+.gallery-grid{gap:6px}
+.gallery-item:nth-child(1),.gallery-item:nth-child(6){grid-column:span 2;grid-row:span 2}
+}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="brand"><span class="brand-mark">W</span><span class="brand-name">Wastra</span></a>
+    <nav class="primary-nav" aria-label="Navigasi utama">
+      <a href="index.html#koleksi">Koleksi</a>
+      <a href="gallery.html" class="active">Galeri</a>
+      <a href="index.html#tentang">Tentang</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+    <div class="header-actions">
+      <a href="index.html#koleksi" class="btn btn-primary btn-sm">Sewa</a>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-nav" aria-label="Navigasi mobile">
+    <a href="index.html#koleksi" data-index="01">Koleksi</a>
+    <a href="gallery.html" data-index="02">Galeri</a>
+    <a href="index.html#tentang" data-index="03">Tentang</a>
+    <a href="checkout.html" data-index="04">Checkout</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <p><span>Studio</span>Jl. Kemang Raya 21, Jakarta Selatan</p>
+    <p><span>Kontak</span>+62 812 0000 0000</p>
+  </div>
+</div>
+
+<main>
+  <section class="gallery-hero">
+    <div class="container">
+      <p class="eyebrow"><span class="dot"></span> Arsip Visual · 2019 — 2024</p>
+      <h1>Galeri<br><em>karya & momen</em>.</h1>
+      <div class="gallery-hero-meta">
+        <p class="lead">Kumpulan foto dan video dari studio — potret koleksi, behind-the-scenes fitting, hingga dokumentasi pelanggan yang mengenakan busana kami.</p>
+        <dl class="gallery-hero-stats">
+          <div><dt>15</dt><dd>Foto</dd></div>
+          <div><dt>3</dt><dd>Video</dd></div>
+          <div><dt>5</dt><dd>Kategori</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-filter">
+    <div class="container">
+      <div class="filter-bar" role="tablist" aria-label="Filter galeri">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="pengantin">Pengantin</button>
+        <button class="filter-btn" data-filter="adat">Adat</button>
+        <button class="filter-btn" data-filter="formal">Formal</button>
+        <button class="filter-btn" data-filter="detail">Detail</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="gallery-grid" id="galleryGrid">
+        <figure class="gallery-item" data-category="pengantin" data-caption="Kebaya & Beskap — Arsip 2023">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Pengantin" loading="lazy">
+          <figcaption><span>01</span> Kebaya & Beskap</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="formal" data-caption="Jas Slim Fit — Arsip 2023">
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=80" alt="Jas formal" loading="lazy">
+          <figcaption><span>02</span> Jas Slim Fit</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="pengantin" data-caption="Kebaya Modern — Arsip 2024">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=80" alt="Kebaya modern" loading="lazy">
+          <figcaption><span>03</span> Kebaya Modern</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="formal" data-caption="Tuxedo Klasik — Arsip 2022">
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=900&q=80" alt="Tuxedo" loading="lazy">
+          <figcaption><span>04</span> Tuxedo Klasik</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="adat" data-caption="Setelan Batik — Arsip 2024">
+          <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=80" alt="Batik" loading="lazy">
+          <figcaption><span>05</span> Setelan Batik</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="pengantin" data-caption="Gaun A-line — Arsip 2023">
+            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80" alt="Gaun pengantin" loading="lazy">
+          <figcaption><span>06</span> Gaun A-line</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="detail" data-caption="Detail Brokat — 2024">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80" alt="Detail brokat" loading="lazy">
+          <figcaption><span>07</span> Detail Brokat</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="pengantin" data-caption="Pasangan Pengantin — 2024">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80" alt="Pasangan" loading="lazy">
+          <figcaption><span>08</span> Pasangan Pengantin</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="adat" data-caption="Baju Bodo — Arsip 2023">
+          <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=80" alt="Baju Bodo" loading="lazy">
+          <figcaption><span>09</span> Baju Bodo</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="formal" data-caption="Portrait — 2023">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Portrait" loading="lazy">
+          <figcaption><span>10</span> Portrait Koleksi</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="detail" data-caption="Fitting Session — 2024">
+          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=80" alt="Fitting" loading="lazy">
+          <figcaption><span>11</span> Fitting Session</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="pengantin" data-caption="Akad Nikah — 2023">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Akad nikah" loading="lazy">
+          <figcaption><span>12</span> Akad Nikah</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="adat" data-caption="Busana Adat — 2024">
+          <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=80" alt="Busana adat" loading="lazy">
+          <figcaption><span>13</span> Busana Adat</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="formal" data-caption="Gala Dinner — 2024">
+          <img src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=900&q=80" alt="Gala dinner" loading="lazy">
+          <figcaption><span>14</span> Gala Dinner</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="detail" data-caption="Detail Payet — 2024">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="Detail payet" loading="lazy">
+          <figcaption><span>15</span> Detail Payet</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow"><span class="dot"></span> Video · Behind the Scenes</p>
+        <div class="section-head-grid">
+          <h2>Tiga potret<br>dalam <em>gerak</em>.</h2>
+          <p class="section-lead">Cuplikan proses fitting, detail busana, dan atmosfer studio Wastra.</p>
+        </div>
+      </header>
+
+      <div class="video-grid">
+        <article class="video-item" data-video="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4">
+          <div class="video-thumb">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80" alt="Behind the scenes" loading="lazy">
+            <button class="play-btn" aria-label="Putar video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="video-duration">0:15</span>
+          </div>
+          <div class="video-meta">
+            <span class="video-num">01</span>
+            <div><h3>Fitting Session</h3><p>Di balik layar fitting pengantin</p></div>
+          </div>
+        </article>
+
+        <article class="video-item" data-video="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4">
+          <div class="video-thumb">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80" alt="Detail busana" loading="lazy">
+            <button class="play-btn" aria-label="Putar video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="video-duration">0:15</span>
+          </div>
+          <div class="video-meta">
+            <span class="video-num">02</span>
+            <div><h3>Detail Busana</h3><p>Menelusuri tekstur brokat & payet</p></div>
+          </div>
+        </article>
+
+        <article class="video-item" data-video="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4">
+          <div class="video-thumb">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=80" alt="Atmosfer studio" loading="lazy">
+            <button class="play-btn" aria-label="Putar video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            <span class="video-duration">0:15</span>
+          </div>
+          <div class="video-meta">
+            <span class="video-num">03</span>
+            <div><h3>Atmosfer Studio</h3><p>Tur singkat showroom Kemang</p></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-cta">
+    <a href="index.html#koleksi" class="gallery-cta-inner">
+      <p class="eyebrow"><span class="dot"></span> Kembali</p>
+      <h2>Siap <em>menyewa</em><br>busana Anda?</h2>
+      <span class="gallery-cta-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><span class="brand-mark">W</span><span class="brand-name">Wastra</span></a>
+        <p>Rental kostum, busana adat, dan pengantin premium. Melayani Jabodetabek sejak 2014.</p>
+      </div>
+      <div class="footer-col"><h4>Studio</h4><p>Jl. Kemang Raya 21<br>Jakarta Selatan 12730</p></div>
+      <div class="footer-col"><h4>Kontak</h4><p><a href="tel:+6281200000000">+62 812 0000 0000</a><br><a href="mailto:hello@wastra.id">hello@wastra.id</a></p></div>
+      <div class="footer-col"><h4>Ikuti</h4><p><a href="#">Instagram</a><br><a href="#">TikTok</a><br><a href="#">Pinterest</a></p></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2025</span> Wastra Studio. Seluruh hak cipta dilindungi.</p>
+      <p>Jakarta, Indonesia</p>
+    </div>
+  </div>
+</footer>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Preview foto">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">✕</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Sebelumnya">←</button>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Berikutnya">→</button>
+  <figure class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+</div>
+
+<div class="video-modal" id="videoModal" role="dialog" aria-label="Pemutar video">
+  <button class="video-modal-close" id="videoModalClose" aria-label="Tutup">✕</button>
+  <div class="video-modal-content"><video id="videoPlayer" controls playsinline></video></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  const siteHeader = document.getElementById('siteHeader');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const yearEl = document.getElementById('year');
+
+  /* HEADER SCROLL */
+  const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* HAMBURGER */
+  function toggleMenu(force){
+    const isOpen = typeof force === 'boolean' ? force : !mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open', isOpen);
+    hamburger.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  hamburger.addEventListener('click', () => toggleMenu());
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+  /* YEAR */
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* FILTER */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const allItems = Array.from(document.querySelectorAll('.gallery-item'));
+  let visibleItems = [];
+  let currentIndex = 0;
+
+  function buildVisibleList(){
+    visibleItems = allItems.filter(el => !el.classList.contains('hidden'));
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      allItems.forEach(item => {
+        const match = filter === 'all' || item.dataset.category === filter;
+        item.classList.toggle('hidden', !match);
+      });
+      buildVisibleList();
+    });
+  });
+  buildVisibleList();
+
+  /* LIGHTBOX */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  function openLightbox(index){
+    if (!visibleItems.length) return;
+    currentIndex = (index + visibleItems.length) % visibleItems.length;
+    const item = visibleItems[currentIndex];
+    const img = item.querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = item.dataset.caption || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir){
+    openLightbox(currentIndex + dir);
+  }
+
+  allItems.forEach(item => {
+    item.addEventListener('click', () => {
+      buildVisibleList();
+      const idx = visibleItems.indexOf(item);
+      openLightbox(idx);
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', e => { e.stopPropagation(); navigate(-1); });
+  lightboxNext.addEventListener('click', e => { e.stopPropagation(); navigate(1); });
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+
+  /* VIDEO MODAL */
+  const videoModal = document.getElementById('videoModal');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const videoModalClose = document.getElementById('videoModalClose');
+  const videoItems = document.querySelectorAll('.video-item');
+
+  videoItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const src = item.dataset.video;
+      if (!src) return;
+      videoPlayer.src = src;
+      videoModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      videoPlayer.play().catch(() => {});
+    });
+  });
+
+  function closeVideoModal(){
+    videoModal.classList.remove('open');
+    videoPlayer.pause();
+    videoPlayer.removeAttribute('src');
+    videoPlayer.load();
+    document.body.style.overflow = '';
+  }
+
+  videoModalClose.addEventListener('click', closeVideoModal);
+  videoModal.addEventListener('click', e => {
+    if (e.target === videoModal) closeVideoModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && videoModal.classList.contains('open')) closeVideoModal();
+  });
+})();
+</script>
+</body>
+</html>
