@@ -1,518 +1,698 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wastra — Sewa Busana Tradisional, Jas & Formal Premium</title>
-  <meta name="description" content="Rental busana tradisional, jas, kebaya, beskap, dan pakaian formal premium. Koleksi lengkap, fitting gratis, layanan antar-jemput Jabodetabek." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wastra — Sewa Kostum, Pakaian Adat & Pengantin</title>
+  <meta name="description" content="Rental busana adat, pengantin, dan formal premium di Jakarta. Fitting gratis, antar-jemput.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============ BASE ============ */
+    :root{--paper:#f2ede4;--paper-deep:#e8e0d2;--ink:#1a1612;--ink-soft:#4a4338;--ink-muted:#8a8172;--rule:#d4c9b8;--accent:#a63d1f;--white:#fff;--serif:'Fraunces',Georgia,serif;--sans:'Inter Tight',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1);--speed:.4s;--max:1280px;--pad:32px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+    ul,ol{list-style:none}
+    ::selection{background:var(--accent);color:#fff}
+    .container{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+    h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.02;letter-spacing:-.025em}
+    h1 em,h2 em{font-style:italic;font-weight:400}
+    h1{font-size:clamp(2.4rem,5.5vw,4.8rem)}
+    h2{font-size:clamp(1.8rem,4vw,3.2rem)}
+    p{color:var(--ink-soft)}
+    .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+    .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .btn{display:inline-flex;align-items:center;gap:10px;font-size:.85rem;font-weight:500;padding:14px 24px;border-radius:2px;transition:all var(--speed) var(--ease);border:1px solid transparent}
+    .btn-primary{background:var(--ink);color:var(--paper)}
+    .btn-primary:hover{background:var(--accent)}
+    .btn-link{color:var(--ink);padding:14px 0;border-bottom:1px solid var(--ink);border-radius:0}
+    .btn-link .arrow{transition:transform var(--speed) var(--ease)}
+    .btn-link:hover .arrow{transform:translateX(4px)}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    /* ============ HEADER ============ */
+    .site-header{position:sticky;top:0;z-index:100;background:rgba(242,237,228,.85);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color var(--speed)}
+    .site-header.scrolled{border-bottom-color:var(--rule)}
+    .header-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:78px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+    .brand{display:inline-flex;align-items:center;gap:12px;flex-shrink:0}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:1.15rem;font-weight:600;border-radius:2px}
+    .brand-name{font-family:var(--serif);font-size:1.35rem;font-weight:500;letter-spacing:-.02em;font-style:italic}
+    .primary-nav{display:flex;align-items:center;gap:32px;margin-left:auto}
+    .primary-nav a{font-size:.85rem;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0;transition:color var(--speed)}
+    .primary-nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--speed) var(--ease)}
+    .primary-nav a:hover,.primary-nav a.active{color:var(--ink)}
+    .primary-nav a:hover::after,.primary-nav a.active::after{transform:scaleX(1)}
+    .header-actions{display:flex;align-items:center;gap:14px}
+    .cart-btn{position:relative;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--rule);border-radius:50%;transition:all var(--speed)}
+    .cart-btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+    .cart-btn svg{width:18px;height:18px}
+    .cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:600;border-radius:999px;display:grid;place-items:center}
+    .cart-count.bump{animation:bump .4s var(--ease)}
+    @keyframes bump{50%{transform:scale(1.35)}}
+    .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);z-index:200;transition:all var(--speed)}
+    .hamburger span{display:block;width:18px;height:1.5px;background:var(--ink);border-radius:2px;transition:transform var(--speed),opacity var(--speed)}
+    .hamburger.active span:nth-child(1){transform:translateY(3.75px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){transform:translateY(-3.75px) rotate(-45deg)}
 
-  <link rel="stylesheet" href="style.css" />
+    /* ============ MOBILE MENU ============ */
+    .mobile-menu{position:fixed;inset:0;background:var(--paper);z-index:90;padding:120px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--ease);pointer-events:none}
+    .mobile-menu.open{clip-path:inset(0 0 0 0);pointer-events:auto}
+    .mobile-nav{display:flex;flex-direction:column;gap:6px}
+    .mobile-nav a{font-family:var(--serif);font-size:clamp(2rem,7vw,3.2rem);font-weight:400;letter-spacing:-.03em;line-height:1.15;padding:8px 0;display:flex;align-items:baseline;gap:20px;border-bottom:1px solid var(--rule);color:var(--ink);opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease),color var(--speed),padding-left var(--speed)}
+    .mobile-menu.open .mobile-nav a{opacity:1;transform:translateY(0)}
+    .mobile-menu.open .mobile-nav a:nth-child(1){transition-delay:.1s}
+    .mobile-menu.open .mobile-nav a:nth-child(2){transition-delay:.16s}
+    .mobile-menu.open .mobile-nav a:nth-child(3){transition-delay:.22s}
+    .mobile-menu.open .mobile-nav a:nth-child(4){transition-delay:.28s}
+    .mobile-nav a:hover{color:var(--accent);padding-left:12px}
+    .mobile-nav a::before{content:attr(data-index);font-family:var(--sans);font-size:.7rem;font-weight:600;color:var(--ink-muted);order:-1}
+    .mobile-menu-foot{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid var(--rule);font-size:.82rem;color:var(--ink-muted)}
+    .mobile-menu-foot span{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:4px}
+
+    /* ============ HERO ============ */
+    .hero{padding:40px 0 0;overflow:hidden}
+    .hero-inner{max-width:var(--max);margin:0 auto;padding:30px var(--pad) 90px;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+    .hero-text h1{margin-bottom:28px}
+    .hero-text .lead{font-size:1.05rem;max-width:460px;margin-bottom:36px;color:var(--ink-soft);line-height:1.6}
+    .hero-actions{display:flex;align-items:center;gap:24px;margin-bottom:56px;flex-wrap:wrap}
+    .hero-stats{display:flex;gap:44px;padding-top:32px;border-top:1px solid var(--rule)}
+    .hero-stats dt{font-family:var(--serif);font-size:2.2rem;font-weight:400;line-height:1;letter-spacing:-.03em}
+    .hero-stats dt sup{font-size:.7rem;font-family:var(--sans);font-weight:500;color:var(--accent);margin-left:2px}
+    .hero-stats dd{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:8px}
+    .hero-image{position:relative;aspect-ratio:4/5;overflow:hidden}
+    .hero-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+    .hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(26,22,18,.35));pointer-events:none}
+    .hero-image figcaption{position:absolute;bottom:20px;left:20px;right:20px;color:var(--paper);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;z-index:2}
+    .hero-badge{position:absolute;top:20px;right:20px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;z-index:2}
+    .marquee{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0;overflow:hidden;background:var(--paper-deep)}
+    .marquee-track{display:inline-flex;align-items:center;gap:28px;animation:marquee 45s linear infinite;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.2vw,2rem);font-weight:400;color:var(--ink)}
+    .marquee-track .sep{color:var(--accent);font-style:normal}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ============ SECTION ============ */
+    .section{padding:100px 0}
+    .section-head{margin-bottom:56px}
+    .section-head-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end}
+    .section-lead{font-size:.95rem;color:var(--ink-muted);line-height:1.65;max-width:420px}
+
+    /* ============ PRODUCT GRID ============ */
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 32px}
+    .product{display:flex;flex-direction:column}
+    .product-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--paper-deep)}
+    .product-media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter var(--speed);filter:saturate(.95)}
+    .product:hover .product-media img{transform:scale(1.05);filter:saturate(1.05)}
+    .product-num{position:absolute;top:16px;left:18px;font-size:.72rem;font-weight:600;letter-spacing:.1em;color:var(--paper);z-index:2;mix-blend-mode:difference}
+    .product-tag{position:absolute;top:16px;right:18px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:5px 10px;z-index:2}
+    .product-add{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);font-size:.78rem;font-weight:500;letter-spacing:.06em;padding:16px;display:flex;justify-content:space-between;align-items:center;transform:translateY(100%);transition:transform var(--speed) var(--ease),background var(--speed);z-index:3}
+    .product-add span{font-size:1.1rem;line-height:1}
+    .product:hover .product-add{transform:translateY(0)}
+    .product-add:hover{background:var(--accent)}
+    .product-info{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 4px 0;border-top:1px solid var(--rule);margin-top:20px}
+    .product-info h3{font-size:1.1rem;font-weight:500;margin-bottom:4px;letter-spacing:-.01em}
+    .product-info p{font-size:.78rem;color:var(--ink-muted)}
+    .product-price{font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--ink);white-space:nowrap;letter-spacing:-.01em}
+
+    /* ============ ABOUT ============ */
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+    .about-image{position:relative;aspect-ratio:3/4;overflow:hidden}
+    .about-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+    .about-image figcaption{position:absolute;bottom:16px;left:16px;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--paper);background:rgba(26,22,18,.6);padding:6px 12px;backdrop-filter:blur(4px)}
+    .about-copy h2{margin-bottom:24px}
+    .about-lead{font-size:1rem;color:var(--ink-soft);margin-bottom:36px;max-width:500px}
+    .features{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+    .features li{display:grid;grid-template-columns:60px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+    .feature-num{font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--accent)}
+    .features h4{font-family:var(--sans);font-size:.92rem;font-weight:600;letter-spacing:0;margin-bottom:4px;color:var(--ink)}
+    .features p{font-size:.82rem;color:var(--ink-muted)}
+
+    /* ============ TESTIMONI ============ */
+    .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+    .testimonial{padding:32px 28px;border:1px solid var(--rule);border-radius:2px;background:var(--white);transition:border-color var(--speed),transform var(--speed)}
+    .testimonial:hover{border-color:var(--ink);transform:translateY(-4px)}
+    .testimonial-index{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--accent);margin-bottom:20px}
+    .testimonial blockquote{font-family:var(--serif);font-size:1.15rem;line-height:1.45;letter-spacing:-.015em;color:var(--ink);margin-bottom:28px;font-weight:400}
+    .testimonial figcaption{display:flex;align-items:center;gap:12px;border-top:1px solid var(--rule);padding-top:20px}
+    .avatar{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--serif);font-size:.88rem;font-weight:500;flex-shrink:0}
+    .testimonial figcaption strong{display:block;font-size:.86rem;font-weight:600;color:var(--ink)}
+    .testimonial figcaption span{font-size:.75rem;color:var(--ink-muted)}
+
+    /* ============ GALLERY CTA ============ */
+    .gallery-cta{padding:0 var(--pad);max-width:var(--max);margin:0 auto 120px}
+    .gallery-cta-inner{display:block;background:var(--ink);color:var(--paper);padding:80px 60px;position:relative;overflow:hidden;transition:background var(--speed)}
+    .gallery-cta-inner:hover{background:var(--accent)}
+    .gallery-cta-inner .eyebrow{color:rgba(242,237,228,.65)}
+    .gallery-cta-inner .eyebrow .dot{background:var(--paper)}
+    .gallery-cta-inner h2{color:var(--paper);margin-bottom:0;max-width:700px}
+    .gallery-cta-inner h2 em{color:var(--paper)}
+    .gallery-cta-arrow{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:80px;height:80px;border-radius:50%;border:1px solid rgba(242,237,228,.3);display:grid;place-items:center;transition:all var(--speed)}
+    .gallery-cta-arrow svg{width:26px;height:26px;color:var(--paper);transition:transform var(--speed)}
+    .gallery-cta-inner:hover .gallery-cta-arrow{background:var(--paper);border-color:var(--paper)}
+    .gallery-cta-inner:hover .gallery-cta-arrow svg{color:var(--accent);transform:translateX(6px)}
+
+    /* ============ FOOTER ============ */
+    .site-footer{background:var(--ink);color:rgba(242,237,228,.7);padding:80px 0 32px}
+    .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(242,237,228,.12)}
+    .footer-brand .brand-mark{background:var(--paper);color:var(--ink)}
+    .footer-brand .brand-name{color:var(--paper)}
+    .footer-brand p{font-size:.85rem;color:rgba(242,237,228,.55);margin-top:20px;max-width:320px;line-height:1.65}
+    .footer-col h4{font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);margin-bottom:20px}
+    .footer-col p,.footer-col a{font-size:.88rem;color:rgba(242,237,228,.6);line-height:1.8;transition:color var(--speed)}
+    .footer-col a:hover{color:var(--paper)}
+    .footer-bottom{display:flex;justify-content:space-between;padding-top:32px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,237,228,.4);flex-wrap:wrap;gap:10px}
+
+    /* ============ CART DRAWER ============ */
+    .cart-overlay{position:fixed;inset:0;background:rgba(26,22,18,.5);backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity var(--speed)}
+    .cart-overlay.open{opacity:1;pointer-events:auto}
+    .cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);z-index:201;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .5s var(--ease);box-shadow:-20px 0 60px rgba(26,22,18,.15)}
+    .cart-drawer.open{transform:translateX(0)}
+    .cart-head{display:flex;justify-content:space-between;align-items:flex-start;padding:28px 28px 24px;border-bottom:1px solid var(--rule)}
+    .cart-head .eyebrow{margin-bottom:8px;font-size:.68rem}
+    .cart-head h3{font-size:1.35rem}
+    .cart-close{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:var(--ink-soft);font-size:.95rem;transition:all var(--speed)}
+    .cart-close:hover{background:var(--ink);color:var(--paper)}
+    .cart-body{flex:1;overflow-y:auto;padding:12px 28px}
+    .cart-empty{text-align:center;padding:60px 20px;color:var(--ink-muted)}
+    .cart-empty p{margin-bottom:20px;font-size:.92rem}
+    .cart-items{display:flex;flex-direction:column}
+    .cart-item{display:grid;grid-template-columns:70px 1fr auto;gap:14px;padding:20px 0;border-bottom:1px solid var(--rule);align-items:center}
+    .cart-item-img{width:70px;height:85px;object-fit:cover;border-radius:2px}
+    .cart-item-info h4{font-family:var(--sans);font-size:.9rem;font-weight:600;letter-spacing:0;margin-bottom:4px;color:var(--ink)}
+    .cart-item-info p{font-size:.75rem;color:var(--ink-muted);margin-bottom:8px}
+    .cart-item-qty{display:inline-flex;align-items:center;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+    .cart-item-qty button{width:26px;height:26px;display:grid;place-items:center;font-size:.9rem;color:var(--ink-soft);transition:background var(--speed)}
+    .cart-item-qty button:hover{background:var(--paper-deep)}
+    .cart-item-qty span{min-width:28px;text-align:center;font-size:.8rem;font-weight:600;border-left:1px solid var(--rule);border-right:1px solid var(--rule);padding:4px 0}
+    .cart-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .cart-item-price{font-family:var(--serif);font-size:.95rem;font-weight:500;color:var(--ink)}
+    .cart-item-remove{font-size:.7rem;color:var(--ink-muted);text-decoration:underline;transition:color var(--speed)}
+    .cart-item-remove:hover{color:var(--accent)}
+    .cart-foot{padding:24px 28px;border-top:1px solid var(--rule);background:var(--paper-deep)}
+    .cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+    .cart-total span{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted)}
+    .cart-total strong{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--ink);letter-spacing:-.02em}
+    .btn-checkout{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--paper);padding:16px 22px;font-size:.85rem;font-weight:500;letter-spacing:.03em;border-radius:2px;transition:background var(--speed)}
+    .btn-checkout:hover{background:var(--accent)}
+    .btn-checkout .arrow{transition:transform var(--speed)}
+    .btn-checkout:hover .arrow{transform:translateX(4px)}
+    .cart-note{font-size:.7rem;color:var(--ink-muted);text-align:center;margin-top:12px}
+
+    /* ============ TOAST ============ */
+    .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--ink);color:var(--paper);padding:14px 26px;border-radius:2px;font-size:.85rem;font-weight:500;box-shadow:0 12px 40px rgba(0,0,0,.3);z-index:400;opacity:0;pointer-events:none;transition:transform .5s var(--ease),opacity .5s var(--ease);max-width:90vw;text-align:center}
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width:1080px){
+      .hero-inner{grid-template-columns:1fr;gap:48px}
+      .hero-image{max-width:520px;margin:0 auto}
+      .section-head-grid{grid-template-columns:1fr;gap:24px}
+      .about-grid{grid-template-columns:1fr;gap:56px}
+      .about-image{max-width:480px;margin:0 auto}
+    }
+    @media (max-width:960px){
+      :root{--pad:24px}
+      .section{padding:80px 0}
+      .primary-nav{display:none}
+      .hamburger{display:flex}
+      .hero-stats{gap:32px}
+      .hero-stats dt{font-size:1.8rem}
+      .product-grid{grid-template-columns:repeat(2,1fr);gap:40px 24px}
+      .testimonial-grid{grid-template-columns:1fr;gap:20px}
+      .section-head{margin-bottom:40px}
+      .gallery-cta{margin-bottom:80px}
+      .gallery-cta-inner{padding:56px 32px}
+      .gallery-cta-arrow{right:32px;width:60px;height:60px}
+      .gallery-cta-arrow svg{width:20px;height:20px}
+      .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+    }
+    @media (max-width:720px){
+      .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
+      .hero-actions .btn{justify-content:center}
+      .hero-stats{flex-wrap:wrap;gap:24px}
+      .gallery-cta-inner{padding:48px 24px}
+      .gallery-cta-arrow{position:relative;right:auto;top:auto;transform:none;margin-top:28px}
+      .footer-top{grid-template-columns:1fr}
+      .footer-bottom{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width:480px){
+      .product-grid{grid-template-columns:1fr;gap:40px}
+      .cart-item{grid-template-columns:60px 1fr}
+      .cart-item-img{width:60px;height:72px}
+      .cart-item-right{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;margin-top:8px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ==================== HEADER ==================== -->
-  <header class="header" id="header">
-    <div class="container nav">
-      <a href="#beranda" class="brand" aria-label="Wastra — Beranda">
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
         <span class="brand-mark">W</span>
-        <span class="brand-text">WASTRA</span>
+        <span class="brand-name">Wastra</span>
       </a>
-
-      <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
-        <ul>
-          <li><a href="#beranda" class="active">Beranda</a></li>
-          <li><a href="#koleksi">Koleksi</a></li>
-          <li><a href="#layanan">Layanan</a></li>
-          <li><a href="#tentang">Tentang</a></li>
-          <li><a href="#testimoni">Testimoni</a></li>
-          <li><a href="#kontak">Kontak</a></li>
-        </ul>
-
-        <div class="nav-menu-cta">
-          <a href="#kontak" class="btn btn-primary">Sewa Sekarang</a>
-          <a href="tel:+6281200000000" class="btn btn-outline">Hubungi Kami</a>
-        </div>
+      <nav class="primary-nav" aria-label="Navigasi utama">
+        <a href="#koleksi" class="active">Koleksi</a>
+        <a href="gallery.html">Galeri</a>
+        <a href="#tentang">Tentang</a>
+        <a href="checkout.html">Checkout</a>
       </nav>
-
-      <div class="nav-actions">
-        <a href="#kontak" class="btn btn-outline btn-sm">Masuk</a>
-        <a href="#kontak" class="btn btn-primary btn-sm">Sewa Sekarang</a>
+      <div class="header-actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Buka tas sewa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span></button>
       </div>
-
-      <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-nav" aria-label="Navigasi mobile">
+      <a href="#koleksi" data-index="01">Koleksi</a>
+      <a href="gallery.html" data-index="02">Galeri</a>
+      <a href="#tentang" data-index="03">Tentang</a>
+      <a href="checkout.html" data-index="04">Checkout</a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <p><span>Studio</span>Jl. Kemang Raya 21, Jakarta Selatan</p>
+      <p><span>Kontak</span>+62 812 0000 0000</p>
+    </div>
+  </div>
+
   <main>
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" id="beranda">
-      <div class="hero-glow" aria-hidden="true"></div>
-
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow reveal">Sejak 2014 · Jakarta Selatan</span>
-
-          <h1 class="reveal" style="--delay:.08s">
-            Kenakan Warisan,<br />
-            Tampil <em>Berkelas</em> di Setiap Momen
-          </h1>
-
-          <p class="hero-desc reveal" style="--delay:.16s">
-            Koleksi busana tradisional, jas, dan pakaian formal premium yang
-            dirawat secara profesional. Dari akad nikah hingga gala dinner —
-            kami siapkan penampilan terbaik Anda.
-          </p>
-
-          <div class="hero-actions reveal" style="--delay:.24s">
-            <a href="#koleksi" class="btn btn-primary">
-              Lihat Koleksi
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-            <a href="#kontak" class="btn btn-outline">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
-              Konsultasi Gratis
-            </a>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow"><span class="dot"></span> Busana Sewa Premium</p>
+          <h1>Kenakan <em>warisan</em>,<br>tampil berkelas.</h1>
+          <p class="lead">Koleksi kostum, busana adat, dan gaun pengantin — dirawat dengan standar butik dan diantar ke depan pintu Anda.</p>
+          <div class="hero-actions">
+            <a href="#koleksi" class="btn btn-primary">Jelajahi Koleksi</a>
+            <a href="gallery.html" class="btn btn-link">Lihat Galeri <span class="arrow">→</span></a>
           </div>
-
-          <dl class="hero-stats reveal" style="--delay:.32s">
-            <div>
-              <dt>350+</dt>
-              <dd>Koleksi busana</dd>
-            </div>
-            <div>
-              <dt>1.200+</dt>
-              <dd>Pelanggan puas</dd>
-            </div>
-            <div>
-              <dt>4.9<span>/5</span></dt>
-              <dd>Rating ulasan</dd>
-            </div>
+          <dl class="hero-stats">
+            <div><dt>350<sup>+</sup></dt><dd>Busana</dd></div>
+            <div><dt>1.2k<sup>+</sup></dt><dd>Pelanggan</dd></div>
+            <div><dt>4.9<sup>/5</sup></dt><dd>Rating</dd></div>
           </dl>
         </div>
+        <figure class="hero-image">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Pengantin dengan busana adat">
+          <span class="hero-badge">Fitting gratis</span>
+          <figcaption>Arsip 2024 · Kebaya Kutubaru & Beskap Jawa</figcaption>
+        </figure>
+      </div>
 
-        <div class="hero-visual reveal" style="--delay:.2s">
-          <div class="hero-frame">
-            <img
-              src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80"
-              alt="Model mengenakan busana formal premium" />
-          </div>
-
-          <div class="hero-card">
-            <div class="stars" aria-label="Rating 4.9 dari 5">★★★★★</div>
-            <p><strong>4.9/5</strong> dari 800+ ulasan pelanggan</p>
-          </div>
-
-          <div class="hero-chip">Fitting Gratis</div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Kebaya</span><span class="sep">·</span><span>Beskap</span><span class="sep">·</span>
+          <span>Jas</span><span class="sep">·</span><span>Gaun Pengantin</span><span class="sep">·</span>
+          <span>Batik</span><span class="sep">·</span><span>Baju Bodo</span><span class="sep">·</span>
+          <span>Kebaya</span><span class="sep">·</span><span>Beskap</span><span class="sep">·</span>
+          <span>Jas</span><span class="sep">·</span><span>Gaun Pengantin</span><span class="sep">·</span>
+          <span>Batik</span><span class="sep">·</span><span>Baju Bodo</span><span class="sep">·</span>
         </div>
       </div>
     </section>
 
-    <!-- ==================== KOLEKSI ==================== -->
+    <!-- KOLEKSI -->
     <section class="section" id="koleksi">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow reveal">Koleksi Kami</span>
-          <h2 class="reveal" style="--delay:.08s">Busana pilihan untuk setiap acara</h2>
-          <p class="reveal" style="--delay:.16s">
-            Setiap pieces dicuci, disetrika, dan diperiksa kualitasnya sebelum
-            sampai ke tangan Anda.
-          </p>
-        </div>
+        <header class="section-head">
+          <p class="eyebrow"><span class="dot"></span> 01 — Koleksi</p>
+          <div class="section-head-grid">
+            <h2>Busana untuk<br>setiap <em>momen</em>.</h2>
+            <p class="section-lead">Setiap pieces dicuci, disetrika, dan diperiksa kualitasnya. Fitting dan dua kali revisi — gratis.</p>
+          </div>
+        </header>
 
-        <div class="collection-grid">
-          <article class="card reveal">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=700&q=80" alt="Jas pengantin pria" loading="lazy" />
-              <span class="badge badge-gold">Terpopuler</span>
+        <div class="product-grid" id="productGrid">
+          <article class="product" data-id="kebaya-01" data-name="Kebaya Kutubaru" data-price="425000" data-image="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80">
+            <div class="product-media">
+              <span class="product-num">01</span>
+              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" alt="Kebaya Kutubaru" loading="lazy">
+              <button class="product-add" data-add>Tambahkan ke Tas <span>+</span></button>
             </div>
-            <div class="card-body">
-              <h3>Jas Pengantin Pria</h3>
-              <p>Wool blend premium dengan pilihan beskap & aksesori adat Jawa.</p>
-              <div class="card-foot">
-                <span class="price">Rp 350.000 <small>/hari</small></span>
-                <a href="#kontak" class="card-link" aria-label="Detail Jas Pengantin Pria">Detail →</a>
-              </div>
+            <div class="product-info">
+              <div><h3>Kebaya Kutubaru</h3><p>Brokat Prancis, payet tangan</p></div>
+              <span class="product-price">Rp 425.000</span>
             </div>
           </article>
 
-          <article class="card reveal" style="--delay:.08s">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80" alt="Kebaya modern" loading="lazy" />
+          <article class="product" data-id="beskap-01" data-name="Beskap Jawa" data-price="375000" data-image="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80">
+            <div class="product-media">
+              <span class="product-num">02</span>
+              <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80" alt="Beskap Jawa" loading="lazy">
+              <button class="product-add" data-add>Tambahkan ke Tas <span>+</span></button>
             </div>
-            <div class="card-body">
-              <h3>Kebaya Modern</h3>
-              <p>Brokat Prancis dengan payet tangan, tersedia 40+ warna.</p>
-              <div class="card-foot">
-                <span class="price">Rp 425.000 <small>/hari</small></span>
-                <a href="#kontak" class="card-link">Detail →</a>
-              </div>
+            <div class="product-info">
+              <div><h3>Beskap Jawa</h3><p>Wool blend, aksesori lengkap</p></div>
+              <span class="product-price">Rp 375.000</span>
             </div>
           </article>
 
-          <article class="card reveal" style="--delay:.16s">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Jas formal pria" loading="lazy" />
-              <span class="badge">Baru</span>
+          <article class="product" data-id="jas-01" data-name="Jas Pengantin Pria" data-price="450000" data-image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80">
+            <div class="product-media">
+              <span class="product-num">03</span>
+              <span class="product-tag">Terpopuler</span>
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Jas pengantin pria" loading="lazy">
+              <button class="product-add" data-add>Tambahkan ke Tas <span>+</span></button>
             </div>
-            <div class="card-body">
-              <h3>Jas Formal Slim Fit</h3>
-              <p>Potongan Italia, cocok untuk wisuda, gala dinner, dan kantor.</p>
-              <div class="card-foot">
-                <span class="price">Rp 275.000 <small>/hari</small></span>
-                <a href="#kontak" class="card-link">Detail →</a>
-              </div>
+            <div class="product-info">
+              <div><h3>Jas Pengantin Pria</h3><p>Slim fit, silk lapel</p></div>
+              <span class="product-price">Rp 450.000</span>
             </div>
           </article>
 
-          <article class="card reveal">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=700&q=80" alt="Busana adat tradisional" loading="lazy" />
+          <article class="product" data-id="gaun-01" data-name="Gaun Pengantin A-line" data-price="750000" data-image="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80">
+            <div class="product-media">
+              <span class="product-num">04</span>
+              <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80" alt="Gaun pengantin" loading="lazy">
+              <button class="product-add" data-add>Tambahkan ke Tas <span>+</span></button>
             </div>
-            <div class="card-body">
-              <h3>Busana Adat Nusantara</h3>
-              <p>Bali, Sunda, Minang, Bugis — lengkap dengan aksesori kepala.</p>
-              <div class="card-foot">
-                <span class="price">Rp 400.000 <small>/hari</small></span>
-                <a href="#kontak" class="card-link">Detail →</a>
-              </div>
+            <div class="product-info">
+              <div><h3>Gaun Pengantin A-line</h3><p>Tulle & sutra, 40+ ukuran</p></div>
+              <span class="product-price">Rp 750.000</span>
             </div>
           </article>
 
-          <article class="card reveal" style="--delay:.08s">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=700&q=80" alt="Tuxedo hitam" loading="lazy" />
+          <article class="product" data-id="tuxedo-01" data-name="Tuxedo Klasik" data-price="400000" data-image="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80">
+            <div class="product-media">
+              <span class="product-num">05</span>
+              <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80" alt="Tuxedo klasik" loading="lazy">
+              <button class="product-add" data-add>Tambahkan ke Tas <span>+</span></button>
             </div>
-            <div class="card-body">
-              <h3>Tuxedo Hitam Klasik</h3>
-              <p>Silk lapel, kemeja pleated, dan bow tie — satu paket siap pakai.</p>
-              <div class="card-foot">
-                <span class="price">Rp 325.000 <small>/hari</small></span>
-                <a href="#kontak" class="card-link">Detail →</a>
-              </div>
+            <div class="product-info">
+              <div><h3>Tuxedo Klasik</h3><p>Untuk gala dinner & formal</p></div>
+              <span class="product-price">Rp 400.000</span>
             </div>
           </article>
 
-          <article class="card reveal" style="--delay:.16s">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=700&q=80" alt="Setelan batik premium" loading="lazy" />
-              <span class="badge badge-gold">Best Value</span>
+          <article class="product" data-id="batik-01" data-name="Setelan Batik Premium" data-price="275000" data-image="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80">
+            <div class="product-media">
+              <span class="product-num">06</span>
+              <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80" alt="Setelan batik" loading="lazy">
+              <button class="product-add" data-add>Tambahkan ke Tas <span>+</span></button>
             </div>
-            <div class="card-body">
-              <h3>Setelan Batik Premium</h3>
-              <p>Batik tulis Pekalongan, nyaman untuk acara resmi maupun semi-formal.</p>
-              <div class="card-foot">
-                <span class="price">Rp 225.000 <small>/hari</small></span>
-                <a href="#kontak" class="card-link">Detail →</a>
-              </div>
+            <div class="product-info">
+              <div><h3>Setelan Batik Premium</h3><p>Batik tulis Pekalongan</p></div>
+              <span class="product-price">Rp 275.000</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ==================== LAYANAN / PROSES ==================== -->
-    <section class="section section-alt" id="layanan">
-      <div class="container">
-        <div class="section-head section-head-center">
-          <span class="eyebrow reveal">Cara Kerja</span>
-          <h2 class="reveal" style="--delay:.08s">Empat langkah, tanpa ribet</h2>
-          <p class="reveal" style="--delay:.16s">
-            Proses sewa yang transparan dari awal sampai busana kembali.
-          </p>
-        </div>
-
-        <ol class="steps">
-          <li class="step reveal">
-            <span class="step-num">01</span>
-            <h3>Pilih Busana</h3>
-            <p>Jelajahi katalog online atau datang langsung ke showroom kami.</p>
-          </li>
-          <li class="step reveal" style="--delay:.08s">
-            <span class="step-num">02</span>
-            <h3>Fitting & Ukur</h3>
-            <p>Tim kami menyesuaikan ukuran gratis, termasuk 2x revisi.</p>
-          </li>
-          <li class="step reveal" style="--delay:.16s">
-            <span class="step-num">03</span>
-            <h3>Ambil / Diantar</h3>
-            <p>Ambil di showroom atau antar-jemput area Jabodetabek.</p>
-          </li>
-          <li class="step reveal" style="--delay:.24s">
-            <span class="step-num">04</span>
-            <h3>Kembalikan</h3>
-            <p>Kembalikan H+1 setelah acara. Laundry & perawatan jadi tanggungan kami.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ==================== TENTANG / KEUNGGULAN ==================== -->
+    <!-- TENTANG -->
     <section class="section" id="tentang">
       <div class="container about-grid">
-        <div class="about-visual reveal">
-          <div class="about-frame">
-            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" alt="Showroom Wastra" loading="lazy" />
-          </div>
-          <div class="about-badge">
-            <strong>10+</strong>
-            <span>Tahun pengalaman</span>
-          </div>
-        </div>
-
+        <figure class="about-image">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" alt="Showroom Wastra" loading="lazy">
+          <figcaption>Showroom Kemang · 2019</figcaption>
+        </figure>
         <div class="about-copy">
-          <span class="eyebrow reveal">Tentang Wastra</span>
-          <h2 class="reveal" style="--delay:.08s">Detail yang membuat penampilan Anda berbeda</h2>
-          <p class="reveal" style="--delay:.16s">
-            Kami percaya busana yang tepat bukan sekadar soal penampilan —
-            tapi soal rasa percaya diri. Karena itu setiap koleksi kami
-            dikurasi langsung oleh stylist dan dirawat dengan standar butik.
-          </p>
-
+          <p class="eyebrow"><span class="dot"></span> 02 — Tentang</p>
+          <h2>Detail yang membuat Anda <em>berbeda</em>.</h2>
+          <p class="about-lead">Kami percaya busana yang tepat bukan sekadar soal penampilan — tapi soal rasa percaya diri. Setiap koleksi dikurasi dan dirawat dengan standar butik.</p>
           <ul class="features">
-            <li class="reveal" style="--delay:.2s">
-              <span class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </span>
-              <div>
-                <h3>Fitting & Revisi Gratis</h3>
-                <p>Dua kali revisi ukuran tanpa biaya tambahan.</p>
-              </div>
-            </li>
-            <li class="reveal" style="--delay:.28s">
-              <span class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </span>
-              <div>
-                <h3>Higienis & Terawat</h3>
-                <p>Dry clean profesional setelah setiap pemakaian.</p>
-              </div>
-            </li>
-            <li class="reveal" style="--delay:.36s">
-              <span class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              </span>
-              <div>
-                <h3>Antar-Jemput</h3>
-                <p>Gratis pengiriman untuk area Jakarta & sekitarnya.</p>
-              </div>
-            </li>
-            <li class="reveal" style="--delay:.44s">
-              <span class="feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              </span>
-              <div>
-                <h3>Booking Fleksibel</h3>
-                <p>Reservasi hingga 6 bulan ke depan dengan DP 30%.</p>
-              </div>
-            </li>
+            <li><span class="feature-num">01</span><div><h4>Fitting & revisi gratis</h4><p>Dua kali revisi ukuran tanpa biaya tambahan.</p></div></li>
+            <li><span class="feature-num">02</span><div><h4>Higienis & terawat</h4><p>Dry clean profesional setelah setiap pemakaian.</p></div></li>
+            <li><span class="feature-num">03</span><div><h4>Antar-jemput</h4><p>Gratis pengiriman area Jakarta & sekitarnya.</p></div></li>
+            <li><span class="feature-num">04</span><div><h4>Booking fleksibel</h4><p>Reservasi hingga 6 bulan ke depan dengan DP 30%.</p></div></li>
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== TESTIMONI ==================== -->
-    <section class="section section-alt" id="testimoni">
+    </section> <!-- TESTIMONI -->
+    <section class="section" style="background:var(--white)">
       <div class="container">
-        <div class="section-head section-head-center">
-          <span class="eyebrow reveal">Testimoni</span>
-          <h2 class="reveal" style="--delay:.08s">Kata mereka yang sudah tampil</h2>
-        </div>
-
+        <header class="section-head">
+          <p class="eyebrow"><span class="dot"></span> 03 — Testimoni</p>
+          <h2>Kata mereka yang<br>sudah <em>tampil</em>.</h2>
+        </header>
         <div class="testimonial-grid">
-          <figure class="testimonial reveal">
-            <div class="stars">★★★★★</div>
-            <blockquote>
-              “Jasnya pas banget di badan, fittingnya cuma sekali langsung
-              oke. Timnya responsif dan sabar banget ngadepin saya yang
-              rewel soal detail.”
-            </blockquote>
-            <figcaption>
-              <span class="avatar">AR</span>
-              <div>
-                <strong>Aditya Rahman</strong>
-                <span>Pengantin · Jakarta</span>
-              </div>
-            </figcaption>
+          <figure class="testimonial">
+            <div class="testimonial-index">01</div>
+            <blockquote>“Jasnya pas banget di badan, fittingnya cuma sekali langsung oke. Timnya responsif dan sabar.”</blockquote>
+            <figcaption><span class="avatar">AR</span><div><strong>Aditya Rahman</strong><span>Pengantin · Jakarta</span></div></figcaption>
           </figure>
-
-          <figure class="testimonial reveal" style="--delay:.1s">
-            <div class="stars">★★★★★</div>
-            <blockquote>
-              “Sewa kebaya buat wisuda dan hasilnya melebihi ekspektasi.
-              Brokatnya masih kinclong, aksesori lengkap, dan packagingnya
-              rapi banget.”
-            </blockquote>
-            <figcaption>
-              <span class="avatar">SN</span>
-              <div>
-                <strong>Salsabila Nur</strong>
-                <span>Wisudawan · Bandung</span>
-              </div>
-            </figcaption>
+          <figure class="testimonial">
+            <div class="testimonial-index">02</div>
+            <blockquote>“Sewa kebaya buat wisuda dan hasilnya melebihi ekspektasi. Brokatnya masih kinclong, aksesori lengkap.”</blockquote>
+            <figcaption><span class="avatar">SN</span><div><strong>Salsabila Nur</strong><span>Wisudawan · Bandung</span></div></figcaption>
           </figure>
-
-          <figure class="testimonial reveal" style="--delay:.2s">
-            <div class="stars">★★★★★</div>
-            <blockquote>
-              “Dipakai buat gala dinner kantor, semua orang nanya sewa di
-              mana. Harga masuk akal untuk kualitas sebesar ini. Pasti balik lagi.”
-            </blockquote>
-            <figcaption>
-              <span class="avatar">BH</span>
-              <div>
-                <strong>Bagas Hermawan</strong>
-                <span>Corporate · Tangerang</span>
-              </div>
-            </figcaption>
+          <figure class="testimonial">
+            <div class="testimonial-index">03</div>
+            <blockquote>“Dipakai buat gala dinner kantor, semua orang nanya sewa di mana. Harga masuk akal untuk kualitas ini.”</blockquote>
+            <figcaption><span class="avatar">BH</span><div><strong>Bagas Hermawan</strong><span>Corporate · Tangerang</span></div></figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- ==================== KONTAK / BOOKING ==================== -->
-    <section class="section" id="kontak">
-      <div class="container contact-grid">
-        <div class="contact-copy">
-          <span class="eyebrow reveal">Reservasi</span>
-          <h2 class="reveal" style="--delay:.08s">Amankan tanggal Anda sekarang</h2>
-          <p class="reveal" style="--delay:.16s">
-            Isi formulir di samping dan tim kami akan menghubungi Anda
-            dalam 1×24 jam kerja. Slot akhir pekan cepat penuh.
-          </p>
-
-          <ul class="contact-list reveal" style="--delay:.24s">
-            <li>
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </span>
-              <div>
-                <strong>Telepon / WhatsApp</strong>
-                <a href="tel:+6281200000000">+62 812-0000-0000</a>
-              </div>
-            </li>
-            <li>
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </span>
-              <div>
-                <strong>Showroom</strong>
-                <span>Jl. Kemang Raya No. 21, Jakarta Selatan</span>
-              </div>
-            </li>
-            <li>
-              <span class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-              </span>
-              <div>
-                <strong>Email</strong>
-                <a href="mailto:hello@wastra.id">hello@wastra.id</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <form class="booking-form reveal" id="bookingForm" novalidate style="--delay:.2s">
-          <div class="field">
-            <label for="nama">Nama Lengkap</label>
-            <input type="text" id="nama" name="nama" placeholder="Nama Anda" required />
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="wa">No. WhatsApp</label>
-              <input type="tel" id="wa" name="wa" placeholder="0812xxxxxxx" required />
-            </div>
-            <div class="field">
-              <label for="tanggal">Tanggal Acara</label>
-              <input type="date" id="tanggal" name="tanggal" required />
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="busana">Jenis Busana</label>
-            <select id="busana" name="busana" required>
-              <option value="" disabled selected>Pilih jenis busana</option>
-              <option>Jas Pengantin Pria</option>
-              <option>Kebaya Modern</option>
-              <option>Jas Formal Slim Fit</option>
-              <option>Busana Adat Nusantara</option>
-              <option>Tuxedo Hitam Klasik</option>
-              <option>Setelan Batik Premium</option>
-            </select>
-              </div>
-   <div class="field">
-            <label for="catatan">Catatan (opsional)</label>
-            <textarea id="catatan" name="catatan" rows="3" placeholder="Ukuran, warna, atau permintaan khusus..."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">
-            Kirim Permintaan Reservasi
-          </button>
-
-          <p class="form-note">Data Anda aman & tidak dibagikan ke pihak ketiga.</p>
-        </form>
-      </div>
+    <!-- GALLERY CTA -->
+    <section class="gallery-cta">
+      <a href="gallery.html" class="gallery-cta-inner">
+        <p class="eyebrow"><span class="dot"></span> 04 — Arsip Visual</p>
+        <h2>Lihat <em>galeri</em> lengkap<br>kami di sini.</h2>
+        <span class="gallery-cta-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
     </section>
   </main>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a href="#beranda" class="brand">
-          <span class="brand-mark">W</span>
-          <span class="brand-text">WASTRA</span>
-        </a>
-        <p>
-          Rental busana tradisional, jas, dan pakaian formal premium.
-          Melayani Jabodetabek sejak 2014.
-        </p>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand"><span class="brand-mark">W</span><span class="brand-name">Wastra</span></a>
+          <p>Rental kostum, busana adat, dan pengantin premium. Melayani Jabodetabek sejak 2014.</p>
+        </div>
+        <div class="footer-col"><h4>Studio</h4><p>Jl. Kemang Raya 21<br>Jakarta Selatan 12730</p></div>
+        <div class="footer-col"><h4>Kontak</h4><p><a href="tel:+6281200000000">+62 812 0000 0000</a><br><a href="mailto:hello@wastra.id">hello@wastra.id</a></p></div>
+        <div class="footer-col"><h4>Ikuti</h4><p><a href="#">Instagram</a><br><a href="#">TikTok</a><br><a href="#">Pinterest</a></p></div>
       </div>
-
-      <div class="footer-col">
-        <h4>Koleksi</h4>
-        <ul>
-          <li><a href="#koleksi">Jas Pengantin</a></li>
-          <li><a href="#koleksi">Kebaya</a></li>
-          <li><a href="#koleksi">Busana Adat</a></li>
-          <li><a href="#koleksi">Batik Premium</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2025</span> Wastra Studio. Seluruh hak cipta dilindungi.</p>
+        <p>Jakarta, Indonesia</p>
       </div>
-
-      <div class="footer-col">
-        <h4>Perusahaan</h4>
-        <ul>
-          <li><a href="#tentang">Tentang Kami</a></li>
-          <li><a href="#layanan">Cara Sewa</a></li>
-          <li><a href="#testimoni">Testimoni</a></li>
-          <li><a href="#kontak">Kontak</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Ikuti Kami</h4>
-        <ul>
-          <li><a href="#" rel="noopener">Instagram</a></li>
-          <li><a href="#" rel="noopener">TikTok</a></li>
-          <li><a href="#" rel="noopener">WhatsApp</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="container footer-bottom">
-      <p>&copy; <span id="year">2025</span> Wastra Busana. Seluruh hak cipta dilindungi.</p>
-      <p>Jakarta, Indonesia</p>
     </div>
   </footer>
 
+  <!-- CART DRAWER -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Tas sewa">
+    <div class="cart-head">
+      <div>
+        <p class="eyebrow"><span class="dot"></span> Tas Sewa</p>
+        <h3><span id="cartHeadCount">0</span> item dipilih</h3>
+      </div>
+      <button class="cart-close" id="cartClose" aria-label="Tutup">✕</button>
+    </div>
+    <div class="cart-body">
+      <div class="cart-empty" id="cartEmpty">
+        <p>Tas Anda masih kosong.</p>
+        <a href="#koleksi" class="btn-link" id="browseLink">Jelajahi koleksi <span class="arrow">→</span></a>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+    </div>
+    <div class="cart-foot" id="cartFoot" hidden>
+      <div class="cart-total">
+        <span>Subtotal per hari</span>
+        <strong id="cartTotal">Rp 0</strong>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn">Lanjut ke Checkout <span class="arrow">→</span></button>
+      <p class="cart-note">Belum termasuk deposit dan biaya antar.</p>
+    </div>
+  </aside>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js"></script>
+  <script>
+    (function(){
+      'use strict';
+
+      /* ---------- CART STATE ---------- */
+      const CART_KEY = 'wastra_cart';
+      const fmt = n => 'Rp ' + n.toLocaleString('id-ID');
+      const getCart = () => { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e){ return []; } };
+      const saveCart = c => localStorage.setItem(CART_KEY, JSON.stringify(c));
+
+      /* ---------- DOM ---------- */
+      const cartBtn = document.getElementById('cartBtn');
+      const cartDrawer = document.getElementById('cartDrawer');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const cartClose = document.getElementById('cartClose');
+      const cartItems = document.getElementById('cartItems');
+      const cartEmpty = document.getElementById('cartEmpty');
+      const cartFoot = document.getElementById('cartFoot');
+      const cartTotal = document.getElementById('cartTotal');
+      const cartCount = document.getElementById('cartCount');
+      const cartHeadCount = document.getElementById('cartHeadCount');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      const browseLink = document.getElementById('browseLink');
+      const toast = document.getElementById('toast');
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const siteHeader = document.getElementById('siteHeader');
+      const yearEl = document.getElementById('year');
+
+      /* ---------- TOAST ---------- */
+      let toastTimer;
+      function showToast(msg){
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+      }
+
+      /* ---------- BADGE ---------- */
+      function bumpBadge(){
+        cartCount.classList.remove('bump');
+        void cartCount.offsetWidth;
+        cartCount.classList.add('bump');
+      }
+
+      /* ---------- CART DRAWER ---------- */
+      function openCart(){
+        cartDrawer.classList.add('open');
+        cartOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeCart(){
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      /* ---------- RENDER CART ---------- */
+      function renderCart(){
+        const cart = getCart();
+        const totalQty = cart.reduce((s,i) => s + i.qty, 0);
+        const totalPrice = cart.reduce((s,i) => s + i.qty * i.price, 0);
+
+        cartCount.textContent = totalQty;
+        cartHeadCount.textContent = totalQty;
+
+        if (!cart.length){
+          cartEmpty.style.display = 'block';
+          cartItems.innerHTML = '';
+          cartFoot.hidden = true;
+          return;
+        }
+
+        cartEmpty.style.display = 'none';
+        cartFoot.hidden = false;
+        cartTotal.textContent = fmt(totalPrice);
+
+        cartItems.innerHTML = cart.map(item => `
+          <div class="cart-item" data-id="${item.id}">
+            <img class="cart-item-img" src="${item.image}" alt="${item.name}">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>${fmt(item.price)} / hari</p>
+              <div class="cart-item-qty">
+                <button data-action="minus" aria-label="Kurangi">−</button>
+                <span>${item.qty}</span>
+                <button data-action="plus" aria-label="Tambah">+</button>
+              </div>
+            </div>
+            <div class="cart-item-right">
+              <span class="cart-item-price">${fmt(item.price * item.qty)}</span>
+              <button class="cart-item-remove" data-action="remove">Hapus</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      /* ---------- CART ACTIONS ---------- */
+      cartItems.addEventListener('click', e => {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        const itemEl = btn.closest('.cart-item');
+        const id = itemEl.dataset.id;
+        const cart = getCart();
+        const idx = cart.findIndex(i => i.id === id);
+        if (idx < 0) return;
+
+        const action = btn.dataset.action;
+        if (action === 'plus') cart[idx].qty++;
+        else if (action === 'minus') { cart[idx].qty--; if (cart[idx].qty <= 0) cart.splice(idx,1); }
+        else if (action === 'remove') cart.splice(idx,1);
+
+        saveCart(cart);
+        renderCart();
+      });
+
+      /* ---------- ADD TO CART ---------- */
+      document.getElementById('productGrid').addEventListener('click', e => {
+        const btn = e.target.closest('[data-add]');
+        if (!btn) return;
+        const card = btn.closest('.product');
+        const product = {
+          id: card.dataset.id,
+          name: card.dataset.name,
+          price: parseInt(card.dataset.price, 10),
+          image: card.dataset.image
+        };
+
+        const cart = getCart();
+        const existing = cart.find(i => i.id === product.id);
+        if (existing) existing.qty++;
+        else cart.push({ ...product, qty: 1 });
+        saveCart(cart);
+        renderCart();
+        bumpBadge();
+        showToast(product.name + ' ditambahkan');
+      });
+
+      /* ---------- CHECKOUT ---------- */
+      checkoutBtn.addEventListener('click', () => {
+        if (!getCart().length) return;
+        window.location.href = 'checkout.html';
+      });
+      browseLink.addEventListener('click', () => closeCart());
+
+      /* ---------- CART OPEN/CLOSE ---------- */
+      cartBtn.addEventListener('click', openCart);
+      cartClose.addEventListener('click', closeCart);
+      cartOverlay.addEventListener('click', closeCart);
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && cartDrawer.classList.contains('open')) closeCart();
+      });
+
+      /* ---------- HAMBURGER ---------- */
+      function toggleMenu(force){
+        const isOpen = typeof force === 'boolean' ? force : !mobileMenu.classList.contains('open');
+        mobileMenu.classList.toggle('open', isOpen);
+        hamburger.classList.toggle('active', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      }
+      hamburger.addEventListener('click', () => toggleMenu());
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+      /* ---------- HEADER SCROLL ---------- */
+      const onScroll = () => siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- YEAR ---------- */
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      /* ---------- INIT ---------- */
+      renderCart();
+    })();
+  </script>
 </body>
-</html>
+  </html>
